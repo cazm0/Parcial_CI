@@ -1,6 +1,5 @@
-// main.js
 function sumar(a, b) {
-    return a + b;
-  }
-  
-  export default sumar;
+  return a + b;
+}
+
+module.exports = sumar;
