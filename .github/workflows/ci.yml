@@ -1,8 +1,6 @@
-name: Node.js CI
+name: Integración continua
 
-on:
-  push:
-    branches: [ main ]
+on: [ pull_request ]
 
 jobs:
   build-and-test:
