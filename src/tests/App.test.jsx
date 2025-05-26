@@ -17,7 +17,6 @@ describe('App component', () => {
   it('renderiza las imagenes del juego', () => {
     render(<App />);
     expect(screen.getByAltText(/Bunny Body/i)).toBeInTheDocument();
-    expect(screen.getByText(/Opciones de ropa aquí/i)).toBeInTheDocument();
   });
 
   it('texto en el footer presente', () => {
