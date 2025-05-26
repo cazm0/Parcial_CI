@@ -27,6 +27,7 @@ export default function App() {
       <main style={styles.main}>
         <div style={styles.bunnyPlaceholder}>
           <img src={bunnyBody} alt="Bunny Body" style={styles.bunnyImage}/>
+          {/* lógica para stackear outfit seleccionado */}
         </div>
         <div style={styles.clothesPlaceholder}>
           <div style={styles.buttonsContainer}>
@@ -99,6 +100,7 @@ const styles = {
   },
     bunnyPlaceholder: {
     flexGrow: 1,
+    position: 'relative',
     width: '300px',        // tamaño fijo o relativo
     height: '300px',
     border: '1px solid #ccc',
@@ -112,9 +114,13 @@ const styles = {
     boxShadow: '0 0 8px rgba(0,0,0,0.1)',
   },
   bunnyImage: {
+    position: "absolute",
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
     maxWidth: '100%',
     maxHeight: '100%',
-    objectFit: 'contain',   // mantiene proporción y adapta
+    objectFit: 'contain',
   },
   clothesPlaceholder: {
     flexGrow: 1,
