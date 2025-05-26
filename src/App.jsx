@@ -1,4 +1,5 @@
 import bunnyBody from './assets/bunny_body.png';
+import outfit1 from './assets/outfit1.png'
 import React, { useState } from "react";
 
 export default function App() {
@@ -27,7 +28,7 @@ export default function App() {
       <main style={styles.main}>
         <div style={styles.bunnyPlaceholder}>
           <img src={bunnyBody} alt="Bunny Body" style={styles.bunnyImage}/>
-          {/* lógica para stackear outfit seleccionado */}
+          <img src={outfit1} alt="outfit1" style={styles.bunnyImage}/>
         </div>
         <div style={styles.clothesPlaceholder}>
           <div style={styles.buttonsContainer}>
