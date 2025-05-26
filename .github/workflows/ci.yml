@@ -3,7 +3,7 @@ name: Integración continua
 on: [pull_request]
 
 jobs:
-  build-and-test:
+  integration:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,3 +23,37 @@ jobs:
 
       - name: Ejecutar ESLint
         run: npm run lint
+
+  containerization:
+    needs: integration
+    runs-on: ubuntu-latest
+
+    env:
+      REGISTRY: ghcr.io
+      IMAGE_NAME: ${{ github.repository }}
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:${{ github.sha }}
+          file: ./Dockerfile
