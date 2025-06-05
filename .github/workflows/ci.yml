@@ -57,3 +57,35 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:${{ github.sha }}
           file: ./Dockerfile
+  feedback:
+    needs: [integration, containerization]  # Este job depende de los dos anteriores
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Notificación Slack - Build completada
+        uses: Ilshidur/action-slack@v2
+        if: success()  # Solo si la build fue exitosa
+        with:
+          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          message: "La build y los tests fueron completados exitosamente."
+
+      - name: Notificación Slack - Error en la build
+        uses: Ilshidur/action-slack@v2
+        if: failure()  # Solo si hubo un error en la build
+        with:
+          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          message: "¡Hubo un error en la build! Revisa los logs."
+
+      - name: Notificación Slack - Docker Build completada
+        uses: Ilshidur/action-slack@v2
+        if: success()  # Solo si la construcción del contenedor fue exitosa
+        with:
+          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          message: "La build del contenedor fue completada exitosamente."
+
+      - name: Notificación Slack - Error en Docker Build
+        uses: Ilshidur/action-slack@v2
+        if: failure()  # Solo si hubo un error en la construcción del contenedor
+        with:
+          slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
+          message: "¡Hubo un error al construir el contenedor! Revisa los logs."
