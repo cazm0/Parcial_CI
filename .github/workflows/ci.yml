@@ -91,7 +91,7 @@ jobs:
           # Enviar mensajes en el canal #pipeline.
           SLACK_CHANNEL: pipeline
           # Autorizado como una Slack App.
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           # Incluir el Actions URL y commit (y omitir Ref y Event).
           MSG_MINIMAL: actions url,commit
           # Determina si la acción fue un 'success' o un 'failure' y el color verde o rojo asociado.
