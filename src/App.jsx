@@ -55,13 +55,11 @@ export default function App() {
             {/* Mostrar las opciones correspondientes a la categoría seleccionada */}
             {options.length > 0 ? (
               options.map((option, index) => (
-                <button key={index} style={styles.optionButton}>
-                  {option}
-                </button>
+              <button key={index} style={styles.optionButton}>
+              {option}
+              </button>
               ))
-            ) : (
-              <p>Selecciona una categoría para ver las opciones</p>
-            )}
+            ) : null}
           </div>
         </div>
       </main>
