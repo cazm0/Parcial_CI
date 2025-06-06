@@ -6,11 +6,16 @@ export default function App() {
   const [selectedCategory, setSelectedCategory] = useState("outfit");
 
   const categories = [
-    { key: "outfit", emoji: "👕", label: "Outfit" },
-    { key: "shoes", emoji: "👟", label: "Zapatos" },
-    { key: "hats", emoji: "🎩", label: "Gorros" },
-    { key: "accessories", emoji: "⭐", label: "Accesorios" },
+    { key: "outfit", emoji: "👕", label: "Outfit", options: ["Outfit 1", "Outfit 2", "Outfit 3"] },
+    { key: "shoes", emoji: "👟", label: "Zapatos", options: ["Shoe 1", "Shoe 2", "Shoe 3"] },
+    { key: "hats", emoji: "🎩", label: "Gorros", options: ["Hat 1", "Hat 2", "Hat 3"] },
+    { key: "accessories", emoji: "⭐", label: "Accesorios", options: ["Acc 1", "Acc 2", "Acc 3"] },
   ];
+    // Encontrar la categoría seleccionada
+  const selectedCategoryData = categories.find(cat => cat.key === selectedCategory);
+  
+  // Si existe, asignamos sus opciones
+  const options = selectedCategoryData ? selectedCategoryData.options : [];
   return (
     <div className="app-container" style={styles.appContainer}>
 
@@ -47,9 +52,16 @@ export default function App() {
             ))}
           </div>
           <div style={styles.contentDisplay}>
-            {
-              categories.find((cat) => cat.key === selectedCategory)?.label
-            }
+            {/* Mostrar las opciones correspondientes a la categoría seleccionada */}
+            {options.length > 0 ? (
+              options.map((option, index) => (
+                <button key={index} style={styles.optionButton}>
+                  {option}
+                </button>
+              ))
+            ) : (
+              <p>Selecciona una categoría para ver las opciones</p>
+            )}
           </div>
         </div>
       </main>
