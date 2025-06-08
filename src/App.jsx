@@ -173,9 +173,17 @@ const styles = {
     height: "150px",
     flexGrow: 1,
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
     boxShadow: '0 0 8px rgba(0,0,0,0.1)',
+  },
+  optionButton: {
+    backgroundColor: 'white',
+    color: 'black',
+    padding: '10px',
+    margin: '5px',
+    borderRadius: '5px',
+    cursor: 'pointer',
   },
   footer: {
     textAlign: 'center',
