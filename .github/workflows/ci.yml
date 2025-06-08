@@ -57,6 +57,14 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:${{ github.sha }}
           file: ./Dockerfile
+      
+  deploy_render:
+    needs: containerization
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render Deploy Hook
+        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+
   feedback:
     needs: [integration, containerization]
     if: always()
