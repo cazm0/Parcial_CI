@@ -10,6 +10,7 @@ export default function App() {
     { key: "hats", emoji: "🎩", label: "Gorros" },
     { key: "accessories", emoji: "⭐", label: "Accesorios" },
   ];
+  const x =5;
   return (
     <div className="app-container" style={styles.appContainer}>
 
