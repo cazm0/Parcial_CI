@@ -58,7 +58,7 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-          
+
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
@@ -78,7 +78,7 @@ jobs:
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
 
   feedback_main_pr:
-    needs: deploy_render
+    needs: integration
     if: github.event_name == 'pull_request' && github.base_ref == 'main'
     runs-on: ubuntu-latest
     env:
