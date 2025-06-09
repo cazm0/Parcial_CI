@@ -150,8 +150,6 @@ jobs:
       - name: Slack notification
         uses: rtCamp/action-slack-notify@v2
         env:
-          # Enviar mensajes en el canal #pipeline.
-          SLACK_CHANNEL: pipeline
           # Autorizado como una Slack App.
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           # Incluir el Actions URL y commit (y omitir Ref y Event).
