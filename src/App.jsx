@@ -1,5 +1,5 @@
 import bunnyBody from './assets/bunny_body.png';
-import outfit1 from './assets/outfit1.png'
+import outfit2 from './assets/outfit2.png'
 import React, { useState } from "react";
 
 export default function App() {
@@ -7,7 +7,6 @@ export default function App() {
 
   const categories = [
     { key: "outfit", emoji: "👕", label: "Outfit" },
-    { key: "shoes", emoji: "👟", label: "Zapatos" },
     { key: "hats", emoji: "🎩", label: "Gorros" },
     { key: "accessories", emoji: "⭐", label: "Accesorios" },
   ];
@@ -28,7 +27,7 @@ export default function App() {
       <main style={styles.main}>
         <div style={styles.bunnyPlaceholder}>
           <img src={bunnyBody} alt="Bunny Body" style={styles.bunnyImage}/>
-          <img src={outfit1} alt="outfit1" style={styles.bunnyImage}/>
+          <img src={outfit2} alt="outfit2" style={styles.bunnyImage}/>
         </div>
         <div style={styles.clothesPlaceholder}>
           <div style={styles.buttonsContainer}>
