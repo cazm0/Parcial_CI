@@ -1,16 +1,12 @@
 import bunnyBody from './assets/bunny_body.png';
-import outfit2 from './assets/outfit2.png'
-import React, { useState } from "react";
-
+import { useState } from "react";
+import { categories } from './data/clothingCategory';
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState("outfit");
-
-  const categories = [
-    { key: "outfit", emoji: "👕", label: "Outfit" },
-    { key: "hats", emoji: "🎩", label: "Gorros" },
-    { key: "accessories", emoji: "⭐", label: "Accesorios" },
-  ];
-    // Encontrar la categoría seleccionada
+  
+  const [selectedOutfit, setSelectedOutfit] = useState(null);
+  const [selectedHat, setSelectedHat] = useState(null);
+  const [selectedAccessory, setSelectedAccessory] = useState(null);
   const selectedCategoryData = categories.find(cat => cat.key === selectedCategory);
   
   // Si existe, asignamos sus opciones
@@ -31,8 +27,16 @@ export default function App() {
 
       <main style={styles.main}>
         <div style={styles.bunnyPlaceholder}>
-          <img src={bunnyBody} alt="Bunny Body" style={styles.bunnyImage}/>
-          <img src={outfit2} alt="outfit2" style={styles.bunnyImage}/>
+          <img src={bunnyBody} alt="Bunny Body" style={styles.bunnyImage} />
+          {selectedOutfit && (
+            <img src={selectedOutfit.image} alt={selectedOutfit.id} style={styles.bunnyImage} />
+          )}
+          {selectedHat && (
+            <img src={selectedHat.image} alt={selectedHat.id} style={styles.bunnyImage} />
+          )}
+          {selectedAccessory && (
+            <img src={selectedAccessory.image} alt={selectedAccessory.id} style={styles.bunnyImage} />
+          )}
         </div>
         <div style={styles.clothesPlaceholder}>
           <div style={styles.buttonsContainer}>
@@ -51,14 +55,24 @@ export default function App() {
             ))}
           </div>
           <div style={styles.contentDisplay}>
-            {/* Mostrar las opciones correspondientes a la categoría seleccionada */}
-            {options.length > 0 ? (
+            {options.length > 0 &&
               options.map((option, index) => (
-              <button key={index} style={styles.optionButton}>
-              {option}
-              </button>
-              ))
-            ) : null}
+                <button
+                  key={index}
+                  style={styles.optionButton}
+                  onClick={() => {
+                    if (selectedCategory === "outfit") setSelectedOutfit(option);
+                    if (selectedCategory === "hats") setSelectedHat(option);
+                    if (selectedCategory === "accessories") setSelectedAccessory(option);
+                  }}
+                >
+                  <img
+                    src={option.image}
+                    alt={option.id}
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  />
+                </button>
+              ))}
           </div>
         </div>
       </main>
@@ -177,13 +191,18 @@ const styles = {
     boxShadow: '0 0 8px rgba(0,0,0,0.1)',
   },
   optionButton: {
-    backgroundColor: 'white',
-    color: 'black',
-    padding: '10px',
-    margin: '5px',
-    borderRadius: '5px',
-    cursor: 'pointer',
-  },
+  width: '80px',
+  height: '80px',
+  padding: '0',
+  border: '1px solid #ccc',
+  borderRadius: '8px',
+  margin: '5px',
+  backgroundColor: '#fff',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  cursor: 'pointer',
+},
   footer: {
     textAlign: 'center',
     fontSize: '0.8rem',
