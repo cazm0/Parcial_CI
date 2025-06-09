@@ -10,6 +10,11 @@ export default function App() {
     { key: "hats", emoji: "🎩", label: "Gorros" },
     { key: "accessories", emoji: "⭐", label: "Accesorios" },
   ];
+    // Encontrar la categoría seleccionada
+  const selectedCategoryData = categories.find(cat => cat.key === selectedCategory);
+  
+  // Si existe, asignamos sus opciones
+  const options = selectedCategoryData ? selectedCategoryData.options : [];
   return (
     <div className="app-container" style={styles.appContainer}>
 
@@ -46,9 +51,14 @@ export default function App() {
             ))}
           </div>
           <div style={styles.contentDisplay}>
-            {
-              categories.find((cat) => cat.key === selectedCategory)?.label
-            }
+            {/* Mostrar las opciones correspondientes a la categoría seleccionada */}
+            {options.length > 0 ? (
+              options.map((option, index) => (
+              <button key={index} style={styles.optionButton}>
+              {option}
+              </button>
+              ))
+            ) : null}
           </div>
         </div>
       </main>
@@ -162,9 +172,17 @@ const styles = {
     height: "150px",
     flexGrow: 1,
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "space-between",
     alignItems: "center",
     boxShadow: '0 0 8px rgba(0,0,0,0.1)',
+  },
+  optionButton: {
+    backgroundColor: 'white',
+    color: 'black',
+    padding: '10px',
+    margin: '5px',
+    borderRadius: '5px',
+    cursor: 'pointer',
   },
   footer: {
     textAlign: 'center',
