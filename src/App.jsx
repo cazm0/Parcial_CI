@@ -88,7 +88,7 @@ export default function App() {
 const styles = {
   appContainer: {
     minHeight: '100vh',
-    backgroundColor: '#d9f0d9', // verde pastel
+    backgroundColor: '#d9f0d9',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
