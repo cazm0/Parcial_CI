@@ -125,7 +125,7 @@ const styles = {
     bunnyPlaceholder: {
     flexGrow: 1,
     position: 'relative',
-    width: '300px',
+    width: '300px',        // tamaño fijo o relativo
     height: '300px',
     border: '1px solid #ccc',
     display: 'flex',
