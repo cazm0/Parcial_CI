@@ -88,7 +88,7 @@ export default function App() {
 const styles = {
   appContainer: {
     minHeight: '100vh',
-    backgroundColor: '#d9f0d9', // verde pastel
+    backgroundColor: '#d9f0d9',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -125,7 +125,7 @@ const styles = {
     bunnyPlaceholder: {
     flexGrow: 1,
     position: 'relative',
-    width: '300px',        // tamaño fijo o relativo
+    width: '300px',
     height: '300px',
     border: '1px solid #ccc',
     display: 'flex',
