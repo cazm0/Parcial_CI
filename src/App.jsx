@@ -11,7 +11,7 @@ export default function App() {
   const options = selectedCategoryData ? selectedCategoryData.options : [];
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-red-100 font-sans p-4">
+    <div className="min-h-screen flex flex-col justify-between bg-green-100 font-sans p-4">
       {/* HEADER */}
       <header className="flex justify-center mt-1">
         <div className="flex items-center gap-2 bg-green-400 px-3 py-1 rounded-lg shadow">
