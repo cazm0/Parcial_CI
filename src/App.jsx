@@ -33,9 +33,9 @@ export default function App() {
             alt="Bunny Body"
             className="absolute top-1/2 left-1/2 max-w-full max-h-full transform -translate-x-1/2 -translate-y-1/2 object-contain"
           />
-          {selectedOutfit && (
+          {/* {selectedOutfit && (
             <img src={selectedOutfit.image} alt={selectedOutfit.id} className="absolute top-1/2 left-1/2 max-w-full max-h-full transform -translate-x-1/2 -translate-y-1/2 object-contain" />
-          )}
+          )} */}
           {selectedHat && (
             <img src={selectedHat.image} alt={selectedHat.id} className="absolute top-1/2 left-1/2 max-w-full max-h-full transform -translate-x-1/2 -translate-y-1/2 object-contain" />
           )}
@@ -76,7 +76,7 @@ export default function App() {
                 }}
                 className="w-20 h-20 p-1 border border-green-200 rounded-lg bg-white m-1 flex justify-center items-center hover:shadow"
               >
-                <img src={option.image} alt={option.id} className="w-full h-full object-contain" />
+                <img src={option.image} alt={`selector-${option.id}`} className="w-full h-full object-contain" />
               </button>
             ))}
           </div>
