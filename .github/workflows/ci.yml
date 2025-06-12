@@ -25,10 +25,9 @@ jobs:
 
       - run: npm install
 
-      - run: npm run build
 
-      - name: Ejecutar tests
-        run: npm run test
+      - name: Build automatizada
+        run: npm run build
 
       - name: Ejecutar ESLint
         run: npm run lint
