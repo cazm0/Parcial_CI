@@ -1,1 +1,1 @@
-![Entornos de CI](./public/Entornos.png)
+![Entornos de CI](./public/entornos.png)
