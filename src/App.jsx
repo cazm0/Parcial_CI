@@ -1,212 +1,92 @@
 import bunnyBody from './assets/bunny_body.png';
 import { useState } from "react";
 import { categories } from './data/clothingCategory';
+
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState("outfit");
-  
   const [selectedOutfit, setSelectedOutfit] = useState(null);
   const [selectedHat, setSelectedHat] = useState(null);
   const [selectedAccessory, setSelectedAccessory] = useState(null);
   const selectedCategoryData = categories.find(cat => cat.key === selectedCategory);
-  
-  // Si existe, asignamos sus opciones
   const options = selectedCategoryData ? selectedCategoryData.options : [];
-  return (
-    <div className="app-container" style={styles.appContainer}>
 
-      <header style={styles.header}>
-        <div style={styles.headerBox}>
+  return (
+    <div className="min-h-screen flex flex-col justify-between bg-green-100 font-sans p-4">
+      {/* HEADER */}
+      <header className="flex justify-center mt-1">
+        <div className="flex items-center gap-2 bg-green-400 px-3 py-1 rounded-lg shadow">
           <img
             src="/bunny_icon.png"
             alt="Bunny Icon"
-            style={{ width: 40, height: 40, objectFit: 'contain' }}
+            className="w-10 h-10 object-contain"
           />
-          <h1 style={styles.title}>Build and Dress</h1>
+          <h1 className="text-base font-semibold text-gray-800">Build and Dress</h1>
         </div>
       </header>
 
-      <main style={styles.main}>
-        <div style={styles.bunnyPlaceholder}>
-          <img src={bunnyBody} alt="Bunny Body" style={styles.bunnyImage} />
+      {/* MAIN */}
+      <main className="flex flex-wrap justify-center items-center gap-8 flex-1 mt-8">
+        {/* BUNNY CONTAINER */}
+        <div className="relative w-[213px] h-[340px] bg-white rounded-xl shadow-md p-4 overflow-hidden">
+          <img
+            src={bunnyBody}
+            alt="Bunny Body"
+            className="absolute top-1/2 left-1/2 max-w-full max-h-full transform -translate-x-1/2 -translate-y-1/2 object-contain"
+          />
           {selectedOutfit && (
-            <img src={selectedOutfit.image} alt={selectedOutfit.id} style={styles.bunnyImage} />
+            <img src={selectedOutfit.image} alt={selectedOutfit.id} className="absolute top-1/2 left-1/2 max-w-full max-h-full transform -translate-x-1/2 -translate-y-1/2 object-contain" />
           )}
           {selectedHat && (
-            <img src={selectedHat.image} alt={selectedHat.id} style={styles.bunnyImage} />
+            <img src={selectedHat.image} alt={selectedHat.id} className="absolute top-1/2 left-1/2 max-w-full max-h-full transform -translate-x-1/2 -translate-y-1/2 object-contain" />
           )}
           {selectedAccessory && (
-            <img src={selectedAccessory.image} alt={selectedAccessory.id} style={styles.bunnyImage} />
+            <img src={selectedAccessory.image} alt={selectedAccessory.id} className="absolute top-1/2 left-1/2 max-w-full max-h-full transform -translate-x-1/2 -translate-y-1/2 object-contain" />
           )}
         </div>
-        <div style={styles.clothesPlaceholder}>
-          <div style={styles.buttonsContainer}>
+
+        {/* CLOTHING OPTIONS */}
+        <div className="flex flex-col items-center w-full max-w-md min-w-[200px] h-[340px] bg-white rounded-xl shadow-md p-4">
+          {/* Category buttons */}
+          <div className="flex justify-around w-full mb-4">
             {categories.map(({ key, emoji }) => (
               <button
                 key={key}
                 onClick={() => setSelectedCategory(key)}
-                style={{
-                  ...styles.button,
-                  ...(selectedCategory === key ? styles.activeButton : {}),
-                }}
                 aria-label={key}
+                className={`text-2xl cursor-pointer px-2 py-1 rounded-full transition ${
+                  selectedCategory === key
+                    ? "font-bold text-blue-700 bg-blue-100"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
               >
                 {emoji}
               </button>
             ))}
           </div>
-          <div style={styles.contentDisplay}>
-            {options.length > 0 &&
-              options.map((option, index) => (
-                <button
-                  key={index}
-                  style={styles.optionButton}
-                  onClick={() => {
-                    if (selectedCategory === "outfit") setSelectedOutfit(option);
-                    if (selectedCategory === "hats") setSelectedHat(option);
-                    if (selectedCategory === "accessories") setSelectedAccessory(option);
-                  }}
-                >
-                  <img
-                    src={option.image}
-                    alt={option.id}
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />
-                </button>
-              ))}
+
+          {/* Clothing option buttons */}
+          <div className="flex justify-center flex-wrap items-center w-full h-[250px] overflow-y-auto">
+            {options.map((option, index) => (
+              <button
+                key={index}
+                onClick={() => {
+                  if (selectedCategory === "outfit") setSelectedOutfit(option);
+                  if (selectedCategory === "hats") setSelectedHat(option);
+                  if (selectedCategory === "accessories") setSelectedAccessory(option);
+                }}
+                className="w-20 h-20 p-1 border border-green-200 rounded-lg bg-white m-1 flex justify-center items-center hover:shadow"
+              >
+                <img src={option.image} alt={option.id} className="w-full h-full object-contain" />
+              </button>
+            ))}
           </div>
         </div>
       </main>
 
-      <footer style={styles.footer}>
-        <p>Build and Dress © 2025 - UTN FRRe</p>
+      {/* FOOTER */}
+      <footer className="text-center text-sm text-gray-700 mt-6">
+        Build and Dress © 2025 - UTN FRRe
       </footer>
-
     </div>
   );
 }
-
-const styles = {
-  appContainer: {
-    minHeight: '100vh',
-    backgroundColor: '#d9f0d9', // verde pastel
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    padding: '1rem',
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-  },
-  header: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '0.5rem',
-    marginTop: '2rem',
-  },
-  headerBox: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.5rem',
-    backgroundColor: '#a3d9a5',
-    padding: '0.5rem 1rem',
-    borderRadius: '8px',
-  },
-  title: {
-    margin: 0,
-    fontSize: '2rem',
-  },
-  main: {
-    flex: 1,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: '2rem',
-    flexWrap: 'wrap',
-  },
-    bunnyPlaceholder: {
-    flexGrow: 1,
-    position: 'relative',
-    width: '300px',        // tamaño fijo o relativo
-    height: '300px',
-    border: '1px solid #ccc',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    overflow: 'hidden',
-    backgroundColor: '#fff',
-    borderRadius: '12px',
-    padding: '1rem',
-    boxShadow: '0 0 8px rgba(0,0,0,0.1)',
-  },
-  bunnyImage: {
-    position: "absolute",
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    maxWidth: '100%',
-    maxHeight: '100%',
-    objectFit: 'contain',
-  },
-  clothesPlaceholder: {
-    flexGrow: 1,
-    minWidth: '200px',
-    maxWidth: '400px',
-    height: '200px',
-    backgroundColor: '#fff',
-    borderRadius: '12px',
-    boxShadow: '0 0 8px rgba(0,0,0,0.1)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontSize: '1.2rem',
-    padding: '1rem',
-    textAlign: 'center',
-    flexDirection: "column",
-  },
-  buttonsContainer: {
-    display: "flex",
-    justifyContent: "space-around",
-    marginBottom: "15px",
-  },
-  button: {
-    fontSize: "1.5rem",
-    cursor: "pointer",
-    backgroundColor: "transparent",
-    border: "none",
-    boxShadow: '0 0 8px rgba(0,0,0,0.1)',
-  },
-  activeButton: {
-    fontWeight: "bold",
-    color: "blue",
-  },
-  contentDisplay: {
-    fontSize: "1.2rem",
-    color: "black",
-    textAlign: "center",
-    width: "100%",
-    height: "150px",
-    flexGrow: 1,
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    boxShadow: '0 0 8px rgba(0,0,0,0.1)',
-  },
-  optionButton: {
-  width: '80px',
-  height: '80px',
-  padding: '0',
-  border: '1px solid #ccc',
-  borderRadius: '8px',
-  margin: '5px',
-  backgroundColor: '#fff',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  cursor: 'pointer',
-},
-  footer: {
-    textAlign: 'center',
-    fontSize: '0.8rem',
-    color: '#444',
-    marginTop: '1rem',
-  },
-};
