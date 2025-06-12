@@ -33,9 +33,9 @@ export default function App() {
             alt="Bunny Body"
             className="absolute top-1/2 left-1/2 max-w-full max-h-full transform -translate-x-1/2 -translate-y-1/2 object-contain"
           />
-          {/* {selectedOutfit && (
+          {selectedOutfit && (
             <img src={selectedOutfit.image} alt={selectedOutfit.id} className="absolute top-1/2 left-1/2 max-w-full max-h-full transform -translate-x-1/2 -translate-y-1/2 object-contain" />
-          )} */}
+          )}
           {selectedHat && (
             <img src={selectedHat.image} alt={selectedHat.id} className="absolute top-1/2 left-1/2 max-w-full max-h-full transform -translate-x-1/2 -translate-y-1/2 object-contain" />
           )}

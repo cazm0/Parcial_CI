@@ -27,7 +27,7 @@ jobs:
 
 
       - name: Build automatizada
-        run: npm run build
+        run: npm run test
 
       - name: Ejecutar ESLint
         run: npm run lint
