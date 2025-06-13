@@ -47,6 +47,7 @@ export default function App() {
 
         {/* CLOTHING OPTIONS */}
         <div className="flex flex-col items-center w-full max-w-md min-w-[200px] h-[340px] bg-gradient-to-t from-ladri to-verdeos rounded-xl shadow-md p-4">
+          
           {/* Category buttons */}
           <div className="flex justify-around w-full mb-4">
             {categories.map(({ key, emoji }) => (
@@ -67,6 +68,17 @@ export default function App() {
 
           {/* Clothing option buttons */}
           <div className="flex justify-center flex-wrap items-center bg-verdecl w-full h-[250px] overflow-y-auto">
+            <button
+              onClick={() => {
+                if (selectedCategory === "outfit") setSelectedOutfit(null);
+                if (selectedCategory === "hats") setSelectedHat(null);
+                if (selectedCategory === "accessories") setSelectedAccessory(null);
+              }}
+              className="w-20 h-20 p-1 border border-verdeos rounded-lg bg-verdeos m-1 flex justify-center items-center text-2xl text-blanq"
+              aria-label="Quitar selección"
+            >
+              🛇
+            </button>
             {options.map((option, index) => (
               <button
                 key={index}
