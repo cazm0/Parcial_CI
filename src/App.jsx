@@ -1,6 +1,7 @@
 import bunnyBody from './assets/bunny_body.png';
 import { useState } from "react";
 import { categories } from './data/clothingCategory';
+import { NoSymbolIcon } from '@heroicons/react/24/solid';
 import './index.css';
 
 export default function App() {
@@ -74,10 +75,10 @@ export default function App() {
                 if (selectedCategory === "hats") setSelectedHat(null);
                 if (selectedCategory === "accessories") setSelectedAccessory(null);
               }}
-              className="w-20 h-20 p-1 border border-verdeos rounded-lg bg-verdeos m-1 flex justify-center items-center text-2xl text-blanq"
+              className="w-20 h-20 p-1 border border-verdeos rounded-lg bg-verdeos m-1 flex justify-center items-center"
               aria-label="Quitar selección"
             >
-              🛇
+              <NoSymbolIcon className="w-8 h-8 text-blanq" />
             </button>
             {options.map((option, index) => (
               <button
