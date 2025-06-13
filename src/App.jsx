@@ -1,6 +1,7 @@
 import bunnyBody from './assets/bunny_body.png';
 import { useState } from "react";
 import { categories } from './data/clothingCategory';
+import './index.css';
 
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState("outfit");
@@ -11,23 +12,23 @@ export default function App() {
   const options = selectedCategoryData ? selectedCategoryData.options : [];
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-green-100 font-sans p-4">
+    <div className="min-h-screen flex flex-col justify-between bg-verdecl font-sans p-4">
       {/* HEADER */}
       <header className="flex justify-center mt-1">
-        <div className="flex items-center gap-2 bg-green-400 px-3 py-1 rounded-lg shadow">
+        <div className="flex items-center gap-2 bg-verdeos px-3 py-1 rounded-lg shadow">
           <img
             src="/bunny_icon.png"
             alt="Bunny Icon"
             className="w-10 h-10 object-contain"
           />
-          <h1 className="text-base font-semibold text-gray-800">Build and Dress</h1>
+          <h1 className="text-base font-pressstart text-blanq">Build and Dress</h1>
         </div>
       </header>
 
       {/* MAIN */}
       <main className="flex flex-wrap justify-center items-center gap-8 flex-1 mt-8">
         {/* BUNNY CONTAINER */}
-        <div className="relative w-[213px] h-[340px] bg-white rounded-xl shadow-md p-4 overflow-hidden">
+        <div className="relative w-[213px] h-[340px] bg-gradient-to-t from-ladri to-verdeos rounded-xl shadow-md p-4 overflow-hidden">
           <img
             src={bunnyBody}
             alt="Bunny Body"
@@ -45,7 +46,7 @@ export default function App() {
         </div>
 
         {/* CLOTHING OPTIONS */}
-        <div className="flex flex-col items-center w-full max-w-md min-w-[200px] h-[340px] bg-white rounded-xl shadow-md p-4">
+        <div className="flex flex-col items-center w-full max-w-md min-w-[200px] h-[340px] bg-gradient-to-t from-ladri to-verdeos rounded-xl shadow-md p-4">
           {/* Category buttons */}
           <div className="flex justify-around w-full mb-4">
             {categories.map(({ key, emoji }) => (
@@ -55,8 +56,8 @@ export default function App() {
                 aria-label={key}
                 className={`text-2xl cursor-pointer px-2 py-1 rounded-full transition ${
                   selectedCategory === key
-                    ? "font-bold text-blue-700 bg-blue-100"
-                    : "text-gray-700 hover:bg-gray-100"
+                    ? "font-bold text-blue-700 bg-blanq"
+                    : "text-gray-700 hover:bg-blanq"
                 }`}
               >
                 {emoji}
@@ -65,7 +66,7 @@ export default function App() {
           </div>
 
           {/* Clothing option buttons */}
-          <div className="flex justify-center flex-wrap items-center w-full h-[250px] overflow-y-auto">
+          <div className="flex justify-center flex-wrap items-center bg-verdecl w-full h-[250px] overflow-y-auto">
             {options.map((option, index) => (
               <button
                 key={index}
@@ -74,7 +75,7 @@ export default function App() {
                   if (selectedCategory === "hats") setSelectedHat(option);
                   if (selectedCategory === "accessories") setSelectedAccessory(option);
                 }}
-                className="w-20 h-20 p-1 border border-green-200 rounded-lg bg-white m-1 flex justify-center items-center hover:shadow"
+                className="w-20 h-20 p-1 border border-verdeos rounded-lg bg-verdeos m-1 flex justify-center items-center hover:shadow"
               >
                 <img src={option.image} alt={`selector-${option.id}`} className="w-full h-full object-contain" />
               </button>
@@ -84,7 +85,7 @@ export default function App() {
       </main>
 
       {/* FOOTER */}
-      <footer className="text-center text-sm text-gray-700 mt-6">
+      <footer className="text-center text-sm text-verdeos mt-6">
         Build and Dress © 2025 - UTN FRRe
       </footer>
     </div>
