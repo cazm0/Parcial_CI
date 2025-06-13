@@ -27,7 +27,7 @@ jobs:
 
 
       - name: Build automatizada
-        run: npm run build
+        run: npm run test
 
       - name: Ejecutar ESLint
         run: npm run lint
@@ -146,7 +146,7 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
           MSG_MINIMAL: actions url,commit
-          SLACK_COLOR: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
+          SLACK_COLOR: ${{ needs.deploy_render.result == 'failure' && 'failure' || needs.deploy_render.result == 'skipped'  || 'success' }}
           SLACK_MESSAGE_ON_SUCCESS: |
             \n✅ Pipeline *succeded* on push to `main` by `${{ env.ACTOR }}`.
             \n*Commit message*: ${{ steps.get-commit-message.outputs.COMMIT_MESSAGE }}
